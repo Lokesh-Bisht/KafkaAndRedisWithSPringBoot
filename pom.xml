@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>dev.lokeshbisht</groupId>
-	<artifactId>KafkaAndRedisWithSPringBoot</artifactId>
+	<artifactId>KafkaAndRedisWithSpringBoot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>KafkaAndRedisWithSPringBoot</name>
+	<name>KafkaAndRedisWithSpringBoot</name>
 	<description>Demo project for learning Apache Kafka and Redis with Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
