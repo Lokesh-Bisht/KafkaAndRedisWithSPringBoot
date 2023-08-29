@@ -8,3 +8,8 @@ kafka:
   bootstrap-servers: ${bootstrapServers}
   topic:
     spotify: ${spotifyTopic}
+
+server:
+  servlet:
+    context-path: /kafka_service
+  port: ${kafkaServiceAppPort}
