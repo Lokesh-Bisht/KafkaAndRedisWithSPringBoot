@@ -2,6 +2,7 @@ package dev.lokeshbisht.KafkaAndRedisWithSpringBoot.controller;
 
 import dev.lokeshbisht.KafkaAndRedisWithSpringBoot.dto.ErrorResponseDto;
 import dev.lokeshbisht.KafkaAndRedisWithSpringBoot.enums.ErrorCode;
+import dev.lokeshbisht.KafkaAndRedisWithSpringBoot.exceptions.InvalidResourceException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,13 @@ import java.util.UUID;
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(InvalidResourceException.class)
+    public ResponseEntity<ErrorResponseDto> handleInvalidResourceException(InvalidResourceException ex) {
+        log.error("InvalidResourceException: {}", ex.getMessage());
+        ErrorResponseDto errorResponseDto = new ErrorResponseDto(ErrorCode.INVALID_RESOURCE, ex.getMessage());
+        return new ResponseEntity<>(errorResponseDto, HttpStatus.BAD_REQUEST);
+    }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDto> handleAllException(Exception ex) {
