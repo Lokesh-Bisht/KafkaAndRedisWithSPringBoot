@@ -8,6 +8,8 @@ kafka:
   bootstrap-servers: ${bootstrapServers}
   topic:
     spotify: ${spotifyTopic}
+    playlist: ${playlistTopic}
+    artist: ${artistTopic}
 
 server:
   servlet:
