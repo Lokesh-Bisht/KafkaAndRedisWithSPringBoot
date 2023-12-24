@@ -21,7 +21,7 @@ public class KafkaServiceImpl implements KafkaService {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Value("${kafka.topic.playlistTopic}")
+    @Value("${kafka.topic.playlist}")
     private String playlistTopic;
 
     public static final Logger logger = LoggerFactory.getLogger(KafkaServiceImpl.class);
