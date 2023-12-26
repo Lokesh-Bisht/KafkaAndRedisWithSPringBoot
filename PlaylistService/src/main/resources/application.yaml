@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: ${playlistServiceAppProfile}
+    applpication:
+      name: playlist-service
+server:
+  servlet:
+    context-path: /playlist_service
+  port: ${playlistServiceAppPort}
