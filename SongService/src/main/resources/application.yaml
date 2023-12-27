@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: ${songServiceAppProfile}
+    applpication:
+      name: song-service
+server:
+  servlet:
+    context-path: /song_service
+  port: ${songServiceAppPort}
