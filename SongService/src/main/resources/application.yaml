@@ -1,8 +1,20 @@
 spring:
   profiles:
     active: ${songServiceAppProfile}
-    applpication:
-      name: song-service
+  applpication:
+    name: song-service
+  jpa:
+    properties:
+      hibernate:
+        default_schema: ${POSTGRES_SCHEMA}
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/song
+    username: ${POSTGRES_USERNAME}
+    password: ${POSTGRES_PASSWORD}
 server:
   servlet:
     context-path: /song_service

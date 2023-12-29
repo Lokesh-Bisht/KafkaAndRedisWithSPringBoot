@@ -1,4 +1,4 @@
-package dev.lokeshbisht.dto.song;
+package dev.lokeshbisht.dto.song.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -20,6 +20,9 @@ public class SongDto {
 
     @JsonProperty("album_id")
     private Long albumId;
+
+    @JsonProperty("genre_id")
+    private Long genreId;
 
     @JsonProperty("href")
     private String href;
