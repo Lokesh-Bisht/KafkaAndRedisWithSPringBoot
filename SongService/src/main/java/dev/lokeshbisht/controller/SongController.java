@@ -1,11 +1,21 @@
 package dev.lokeshbisht.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import dev.lokeshbisht.dto.song.response.SongDto;
+import dev.lokeshbisht.dto.song.request.SongRequestDto;
+import dev.lokeshbisht.service.SongService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin
 @RestController
+@CrossOrigin
 @RequestMapping("/v1")
 public class SongController {
+
+    @Autowired
+    private SongService songService;
+
+    @PostMapping("/song")
+    public SongDto addSong(@RequestBody SongRequestDto songRequestDto, @RequestHeader(value = "X-Genre-Id") Long genreId) {
+        return songService.addSong(songRequestDto, genreId);
+    }
 }
