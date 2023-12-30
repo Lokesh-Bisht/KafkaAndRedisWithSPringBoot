@@ -15,7 +15,7 @@ public class SongController {
     private SongService songService;
 
     @PostMapping("/song")
-    public SongDto addSong(@RequestBody SongRequestDto songRequestDto, @RequestHeader(value = "X-Genre-Id") Long genreId) {
-        return songService.addSong(songRequestDto, genreId);
+    public SongDto addSong(@RequestBody SongRequestDto songRequestDto, @RequestHeader("X-Genre-Id") Long genredId) {
+        return songService.addSong(songRequestDto, genredId);
     }
 }

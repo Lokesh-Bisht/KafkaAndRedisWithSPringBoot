@@ -27,6 +27,7 @@ public class SongServiceImpl implements SongService {
         logger.info("Add a new song: {} in {} genre", songRequestDto, genreId);
         Song song = songMapper.toSong(songRequestDto);
         song.setGenreId(genreId);
+        song.setCreatedAt(System.currentTimeMillis());
         return songMapper.toSongDto(songRepository.save(song));
     }
 }
