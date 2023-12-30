@@ -1,15 +1,17 @@
-package dev.lokeshbisht.service.impl;
+package dev.lokeshbisht.SongService.service.impl;
 
-import dev.lokeshbisht.dto.song.response.SongDto;
-import dev.lokeshbisht.dto.song.request.SongRequestDto;
-import dev.lokeshbisht.entity.Song;
-import dev.lokeshbisht.mapper.SongMapper;
-import dev.lokeshbisht.repository.SongRepository;
-import dev.lokeshbisht.service.SongService;
+import dev.lokeshbisht.SongService.dto.song.request.SongRequestDto;
+import dev.lokeshbisht.SongService.dto.song.response.SongDto;
+import dev.lokeshbisht.SongService.entity.Song;
+import dev.lokeshbisht.SongService.mapper.SongMapper;
+import dev.lokeshbisht.SongService.repository.SongRepository;
+import dev.lokeshbisht.SongService.service.SongService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 @Service
 public class SongServiceImpl implements SongService {
@@ -27,7 +29,7 @@ public class SongServiceImpl implements SongService {
         logger.info("Add a new song: {} in {} genre", songRequestDto, genreId);
         Song song = songMapper.toSong(songRequestDto);
         song.setGenreId(genreId);
-        song.setCreatedAt(System.currentTimeMillis());
+        song.setCreatedAt(new Date());
         return songMapper.toSongDto(songRepository.save(song));
     }
 }

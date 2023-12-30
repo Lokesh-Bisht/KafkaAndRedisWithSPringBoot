@@ -1,8 +1,8 @@
-package dev.lokeshbisht.controller;
+package dev.lokeshbisht.SongService.controller;
 
-import dev.lokeshbisht.dto.song.response.SongDto;
-import dev.lokeshbisht.dto.song.request.SongRequestDto;
-import dev.lokeshbisht.service.SongService;
+import dev.lokeshbisht.SongService.dto.song.response.SongDto;
+import dev.lokeshbisht.SongService.dto.song.request.SongRequestDto;
+import dev.lokeshbisht.SongService.service.SongService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

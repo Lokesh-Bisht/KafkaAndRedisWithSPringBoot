@@ -1,4 +1,4 @@
-package dev.lokeshbisht.entity;
+package dev.lokeshbisht.SongService.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
