@@ -2,6 +2,7 @@ package dev.lokeshbisht.SongService.controller;
 
 import dev.lokeshbisht.SongService.dto.ErrorResponseDto;
 import dev.lokeshbisht.SongService.enums.ErrorCode;
+import dev.lokeshbisht.SongService.exceptions.SongNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,13 @@ import java.util.UUID;
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(SongNotFoundException.class)
+    public ResponseEntity<ErrorResponseDto> handleSongNotFoundException(SongNotFoundException ex) {
+        log.error("Encountered SongNotFoundException: {}", ex.getMessage());
+        ErrorResponseDto errorResponseDto = new ErrorResponseDto(ErrorCode.SONG_NOT_FOUND, ex.getMessage());
+        return new ResponseEntity<>(errorResponseDto, HttpStatus.BAD_REQUEST);
+    }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDto> handleAllExceptions(Exception ex) {
