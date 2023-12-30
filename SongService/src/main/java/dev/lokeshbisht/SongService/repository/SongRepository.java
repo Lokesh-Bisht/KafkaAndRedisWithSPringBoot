@@ -1,6 +1,6 @@
-package dev.lokeshbisht.repository;
+package dev.lokeshbisht.SongService.repository;
 
-import dev.lokeshbisht.entity.Song;
+import dev.lokeshbisht.SongService.entity.Song;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

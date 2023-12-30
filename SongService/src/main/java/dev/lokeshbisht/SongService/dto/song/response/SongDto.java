@@ -1,4 +1,4 @@
-package dev.lokeshbisht.dto.song.request;
+package dev.lokeshbisht.SongService.dto.song.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -10,13 +10,19 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SongRequestDto {
+public class SongDto {
+
+    @JsonProperty("id")
+    private Long songId;
 
     @JsonProperty("artist_id")
     private Long artistId;
 
     @JsonProperty("album_id")
     private Long albumId;
+
+    @JsonProperty("genre_id")
+    private Long genreId;
 
     @JsonProperty("href")
     private String href;

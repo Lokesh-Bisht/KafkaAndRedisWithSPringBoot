@@ -1,11 +1,16 @@
-package dev.lokeshbisht.entity;
+package dev.lokeshbisht.SongService.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.Date;
 
 @Table
 @Entity
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
 public class Song {
 
     @Id
@@ -17,6 +22,9 @@ public class Song {
 
     @Column(name = "album_id")
     private Long albumId;
+
+    @Column(name = "genre_id")
+    private Long genreId;
 
     @Column(nullable = false)
     private String href;
