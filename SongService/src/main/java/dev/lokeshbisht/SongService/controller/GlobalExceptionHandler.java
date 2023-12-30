@@ -1,7 +1,7 @@
-package dev.lokeshbisht.controller;
+package dev.lokeshbisht.SongService.controller;
 
-import dev.lokeshbisht.dto.ErrorResponseDto;
-import dev.lokeshbisht.enums.ErrorCode;
+import dev.lokeshbisht.SongService.dto.ErrorResponseDto;
+import dev.lokeshbisht.SongService.enums.ErrorCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

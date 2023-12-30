@@ -1,7 +1,7 @@
-package dev.lokeshbisht.service;
+package dev.lokeshbisht.SongService.service;
 
-import dev.lokeshbisht.dto.song.response.SongDto;
-import dev.lokeshbisht.dto.song.request.SongRequestDto;
+import dev.lokeshbisht.SongService.dto.song.request.SongRequestDto;
+import dev.lokeshbisht.SongService.dto.song.response.SongDto;
 
 public interface SongService {
 

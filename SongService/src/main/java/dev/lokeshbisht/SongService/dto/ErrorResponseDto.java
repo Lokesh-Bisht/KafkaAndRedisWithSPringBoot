@@ -1,7 +1,7 @@
-package dev.lokeshbisht.dto;
+package dev.lokeshbisht.SongService.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import dev.lokeshbisht.enums.ErrorCode;
+import dev.lokeshbisht.SongService.enums.ErrorCode;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package dev.lokeshbisht.dto.song.response;
+package dev.lokeshbisht.SongService.dto.song.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
