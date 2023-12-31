@@ -5,5 +5,6 @@ import dev.lokeshbisht.SongService.dto.song.response.SongDto;
 
 public interface SongService {
 
-    public SongDto addSong(SongRequestDto songRequestDto, Long genreId);
+    SongDto addSong(SongRequestDto songRequestDto, Long genreId);
+    SongDto updateSong(SongRequestDto songRequestDto, Long genreId, Long songId);
 }
