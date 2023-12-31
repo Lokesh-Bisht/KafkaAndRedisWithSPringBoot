@@ -35,6 +35,8 @@ public class Song {
 
     private Integer duration;
 
+    private Long streams;
+
     @Column(name = "created_at")
     private Date createdAt;
 
