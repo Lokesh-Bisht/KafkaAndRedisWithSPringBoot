@@ -30,6 +30,8 @@ public class SongRequestDto {
 
     private Integer duration;
 
+    private Long streams;
+
     @JsonProperty("created_at")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = ISO8601)
     private Date createdAt;

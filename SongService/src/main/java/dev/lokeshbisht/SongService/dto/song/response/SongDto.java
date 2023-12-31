@@ -33,6 +33,8 @@ public class SongDto {
 
     private Integer duration;
 
+    private Long streams;
+
     @JsonProperty("created_at")
     private Date createdAt;
 
