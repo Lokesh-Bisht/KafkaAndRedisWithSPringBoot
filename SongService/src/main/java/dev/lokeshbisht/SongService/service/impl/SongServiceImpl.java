@@ -1,5 +1,6 @@
 package dev.lokeshbisht.SongService.service.impl;
 
+import dev.lokeshbisht.SongService.dto.song.request.SongPlayCountRequestDto;
 import dev.lokeshbisht.SongService.dto.song.request.SongRequestDto;
 import dev.lokeshbisht.SongService.dto.song.response.SongDto;
 import dev.lokeshbisht.SongService.entity.Song;
@@ -49,6 +50,17 @@ public class SongServiceImpl implements SongService {
         song.setCreatedBy(songOldInfo.get().getCreatedBy());
         song.setUpdatedAt(new Date());
         return songMapper.toSongDto(songRepository.save(song));
+    }
+
+    @Override
+    public SongDto updatePlayCount(SongPlayCountRequestDto songPlayCountRequestDto, Long songId) {
+        logger.info("Update play count of song: {} to {}", songId, songPlayCountRequestDto.getPlayCount());
+        Optional<Song> song = songRepository.findById(songId);
+        if (song.isEmpty()) {
+            throw new SongNotFoundException("The song with songId " + songId + " doesn't exist.");
+        }
+        song.get().setStreams(songPlayCountRequestDto.getPlayCount());
+        return songMapper.toSongDto(songRepository.save(song.get()));
     }
 
 }
