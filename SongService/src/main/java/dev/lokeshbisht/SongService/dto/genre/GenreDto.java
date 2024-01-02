@@ -15,7 +15,6 @@ import static dev.lokeshbisht.SongService.constants.JsonConstants.ISO8601;
 @AllArgsConstructor
 public class GenreDto {
 
-    @JsonProperty("genre_id")
     private Long id;
 
     private String name;
