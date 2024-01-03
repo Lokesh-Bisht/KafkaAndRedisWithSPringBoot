@@ -48,4 +48,14 @@ public class GenreServiceImpl implements GenreService {
         updatedGenre.setUpdatedAt(new Date());
         return genreMapper.toGenreDto(genreRepository.save(updatedGenre));
     }
+
+    @Override
+    public GenreDto findGenre(Long genreId) {
+        logger.info("Fetch genre: {}", genreId);
+        Optional<Genre> genre = genreRepository.findById(genreId);
+        if (genre.isEmpty()) {
+            throw new GenreNotFoundException("Genre doesn't exist");
+        }
+        return genreMapper.toGenreDto(genre.get());
+    }
 }
