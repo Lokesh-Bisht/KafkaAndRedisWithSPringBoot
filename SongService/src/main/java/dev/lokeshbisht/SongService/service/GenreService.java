@@ -6,4 +6,5 @@ import dev.lokeshbisht.SongService.dto.genre.GenreRequestDto;
 public interface GenreService {
 
     GenreDto addGenre(GenreRequestDto genreRequestDto);
+    GenreDto updateGenre(GenreRequestDto genreRequestDto, Long genreId);
 }
