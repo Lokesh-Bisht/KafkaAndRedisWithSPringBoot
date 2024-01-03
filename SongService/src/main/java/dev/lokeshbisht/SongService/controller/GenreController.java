@@ -1,5 +1,6 @@
 package dev.lokeshbisht.SongService.controller;
 
+import dev.lokeshbisht.SongService.dto.ApiResponseDto;
 import dev.lokeshbisht.SongService.dto.genre.GenreDto;
 import dev.lokeshbisht.SongService.dto.genre.GenreRequestDto;
 import dev.lokeshbisht.SongService.entity.Genre;
@@ -26,7 +27,7 @@ public class GenreController {
     }
 
     @GetMapping("/genre/{genreId}")
-    public GenreDto findGenre(@PathVariable Long genreId) {
+    public ApiResponseDto<GenreDto> findGenre(@PathVariable Long genreId) {
         return genreService.findGenre(genreId);
     }
 }

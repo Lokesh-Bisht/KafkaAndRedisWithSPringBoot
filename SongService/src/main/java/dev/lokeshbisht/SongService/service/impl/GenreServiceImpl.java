@@ -1,5 +1,7 @@
 package dev.lokeshbisht.SongService.service.impl;
 
+import dev.lokeshbisht.SongService.dto.ApiResponseDto;
+import dev.lokeshbisht.SongService.dto.MetaDataDto;
 import dev.lokeshbisht.SongService.dto.genre.GenreDto;
 import dev.lokeshbisht.SongService.dto.genre.GenreRequestDto;
 import dev.lokeshbisht.SongService.entity.Genre;
@@ -49,13 +51,24 @@ public class GenreServiceImpl implements GenreService {
         return genreMapper.toGenreDto(genreRepository.save(updatedGenre));
     }
 
+    private MetaDataDto generateApiResponseMetadata(int page, int size, int total, double startTime) {
+        return MetaDataDto.builder()
+            .page(page)
+            .size(size)
+            .total(total)
+            .took(System.currentTimeMillis() - startTime)
+            .build();
+    }
+
     @Override
-    public GenreDto findGenre(Long genreId) {
+    public ApiResponseDto<GenreDto> findGenre(Long genreId) {
+        double startTime = System.currentTimeMillis();
         logger.info("Fetch genre: {}", genreId);
         Optional<Genre> genre = genreRepository.findById(genreId);
         if (genre.isEmpty()) {
             throw new GenreNotFoundException("Genre doesn't exist");
         }
-        return genreMapper.toGenreDto(genre.get());
+        GenreDto genreDto = genreMapper.toGenreDto(genre.get());
+        return new ApiResponseDto<>(genreDto, "OK", null, generateApiResponseMetadata(1, 1, 1, startTime));
     }
 }
