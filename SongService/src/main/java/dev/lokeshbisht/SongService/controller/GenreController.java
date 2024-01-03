@@ -24,4 +24,9 @@ public class GenreController {
     public GenreDto updateGenre(@RequestBody GenreRequestDto genreRequestDto, Long genreId) {
         return genreService.updateGenre(genreRequestDto, genreId);
     }
+
+    @GetMapping("/genre/{genreId}")
+    public GenreDto findGenre(@PathVariable Long genreId) {
+        return genreService.findGenre(genreId);
+    }
 }
