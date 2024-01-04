@@ -10,6 +10,7 @@ kafka:
     spotify: ${spotifyTopic}
     playlist: ${playlistTopic}
     artist: ${artistTopic}
+    genre: ${genreTopic}
 
 server:
   servlet:
