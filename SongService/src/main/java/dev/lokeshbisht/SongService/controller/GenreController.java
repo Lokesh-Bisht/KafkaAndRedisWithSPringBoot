@@ -8,6 +8,8 @@ import dev.lokeshbisht.SongService.service.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/v1")
@@ -29,5 +31,10 @@ public class GenreController {
     @GetMapping("/genre/{genreId}")
     public ApiResponseDto<GenreDto> findGenre(@PathVariable Long genreId) {
         return genreService.findGenre(genreId);
+    }
+
+    @GetMapping("/genre/all")
+    public ApiResponseDto<List<GenreDto>> findAllGenres() {
+        return genreService.findAllGenres();
     }
 }
