@@ -14,7 +14,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -70,5 +72,17 @@ public class GenreServiceImpl implements GenreService {
         }
         GenreDto genreDto = genreMapper.toGenreDto(genre.get());
         return new ApiResponseDto<>(genreDto, "OK", null, generateApiResponseMetadata(1, 1, 1, startTime));
+    }
+
+    @Override
+    public ApiResponseDto<List<GenreDto>> findAllGenres() {
+        double startTime = System.currentTimeMillis();
+        logger.info("Fetch all genres.");
+        List<Genre> genres = genreRepository.findAll();
+        List<GenreDto> genreDtoList = new ArrayList<>();
+        for (Genre genre : genres) {
+            genreDtoList.add(genreMapper.toGenreDto(genre));
+        }
+        return new ApiResponseDto<>(genreDtoList, "OK", null, generateApiResponseMetadata(1, 1, genreDtoList.size(), startTime));
     }
 }
