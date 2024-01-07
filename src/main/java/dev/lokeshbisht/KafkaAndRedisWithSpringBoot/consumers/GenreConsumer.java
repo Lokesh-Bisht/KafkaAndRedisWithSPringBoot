@@ -45,7 +45,7 @@ public class GenreConsumer {
         String url = songServiceBaseUrl + "/v1/genre";
         try {
             HttpHeaders headers = new HttpHeaders();
-            CreateGenreRequestDto createGenreRequestDto = null;
+            CreateGenreRequestDto createGenreRequestDto = objectMapper.readValue(message, CreateGenreRequestDto.class);
             headers.setContentType(MediaType.APPLICATION_JSON);
             restTemplate.exchange(url, HttpMethod.POST, new HttpEntity<>(createGenreRequestDto, headers), new ParameterizedTypeReference<>() {
             });
