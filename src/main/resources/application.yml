@@ -10,6 +10,9 @@ kafka:
     spotify: ${spotifyTopic}
     playlist: ${playlistTopic}
     artist: ${artistTopic}
+    genre: ${genreTopic}
+  service:
+    base-url: ${songServiceBaseUrl}
 
 server:
   servlet:
