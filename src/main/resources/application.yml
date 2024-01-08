@@ -11,6 +11,7 @@ kafka:
     playlist: ${playlistTopic}
     artist: ${artistTopic}
     genre: ${genreTopic}
+    song: ${songTopic}
   service:
     base-url: ${songServiceBaseUrl}
 
