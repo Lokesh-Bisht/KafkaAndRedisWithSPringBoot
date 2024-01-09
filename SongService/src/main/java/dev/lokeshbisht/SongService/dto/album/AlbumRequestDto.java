@@ -24,4 +24,10 @@ public class AlbumRequestDto {
     private List<String> availableMarkets;
 
     private String href;
+
+    @JsonProperty("created_by")
+    private String createdBy;
+
+    @JsonProperty("updated_by")
+    private String updatedBy;
 }
