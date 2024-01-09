@@ -1,11 +1,21 @@
 package dev.lokeshbisht.SongService.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import dev.lokeshbisht.SongService.dto.album.AlbumDto;
+import dev.lokeshbisht.SongService.dto.album.AlbumRequestDto;
+import dev.lokeshbisht.SongService.service.AlbumService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/v1")
 public class AlbumController {
+
+    @Autowired
+    private AlbumService albumService;
+
+    @PostMapping("/album")
+    public AlbumDto createAlbum(@RequestBody AlbumRequestDto albumRequestDto) {
+        return albumService.addAlbum(albumRequestDto);
+    }
 }
