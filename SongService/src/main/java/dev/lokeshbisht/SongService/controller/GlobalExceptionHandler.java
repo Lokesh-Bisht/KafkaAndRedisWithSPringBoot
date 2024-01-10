@@ -4,6 +4,7 @@ import dev.lokeshbisht.SongService.dto.ErrorResponseDto;
 import dev.lokeshbisht.SongService.enums.ErrorCode;
 import dev.lokeshbisht.SongService.exceptions.AlbumNotFoundException;
 import dev.lokeshbisht.SongService.exceptions.GenreNotFoundException;
+import dev.lokeshbisht.SongService.exceptions.InvalidResourceException;
 import dev.lokeshbisht.SongService.exceptions.SongNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -35,6 +36,13 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponseDto> handleAlbumNotFoundException(AlbumNotFoundException ex) {
         log.error("Encountered AlbumNotFoundException: {}", ex.getMessage());
         ErrorResponseDto errorResponseDto = new ErrorResponseDto(ErrorCode.ALBUM_NOT_FOUND, ex.getMessage());
+        return new ResponseEntity<>(errorResponseDto, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(InvalidResourceException.class)
+    public ResponseEntity<ErrorResponseDto> handleInvalidResourceException(InvalidResourceException ex) {
+        log.error("InvalidResourceException: {}", ex.getMessage());
+        ErrorResponseDto errorResponseDto = new ErrorResponseDto(ErrorCode.INVALID_RESOURCE, ex.getMessage());
         return new ResponseEntity<>(errorResponseDto, HttpStatus.NOT_FOUND);
     }
 
