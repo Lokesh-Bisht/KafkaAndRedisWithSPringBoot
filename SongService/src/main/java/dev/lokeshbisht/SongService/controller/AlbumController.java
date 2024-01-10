@@ -18,4 +18,9 @@ public class AlbumController {
     public AlbumDto createAlbum(@RequestBody AlbumRequestDto albumRequestDto) {
         return albumService.addAlbum(albumRequestDto);
     }
+
+    @PostMapping("/album/{albumId}")
+    public AlbumDto updateAlbum(@RequestBody AlbumRequestDto albumRequestDto, @PathVariable Long albumId) {
+        return albumService.updateAlbum(albumRequestDto, albumId);
+    }
 }
