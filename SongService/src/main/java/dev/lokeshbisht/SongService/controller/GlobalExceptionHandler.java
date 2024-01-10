@@ -2,6 +2,7 @@ package dev.lokeshbisht.SongService.controller;
 
 import dev.lokeshbisht.SongService.dto.ErrorResponseDto;
 import dev.lokeshbisht.SongService.enums.ErrorCode;
+import dev.lokeshbisht.SongService.exceptions.AlbumNotFoundException;
 import dev.lokeshbisht.SongService.exceptions.GenreNotFoundException;
 import dev.lokeshbisht.SongService.exceptions.SongNotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +28,13 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponseDto> handleGenreNotFoundException(GenreNotFoundException ex) {
         log.error("Encountered GenreNotFoundException: {}", ex.getMessage());
         ErrorResponseDto errorResponseDto = new ErrorResponseDto(ErrorCode.GENRE_NOT_FOUND, ex.getMessage());
+        return new ResponseEntity<>(errorResponseDto, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(AlbumNotFoundException.class)
+    public ResponseEntity<ErrorResponseDto> handleAlbumNotFoundException(AlbumNotFoundException ex) {
+        log.error("Encountered AlbumNotFoundException: {}", ex.getMessage());
+        ErrorResponseDto errorResponseDto = new ErrorResponseDto(ErrorCode.ALBUM_NOT_FOUND, ex.getMessage());
         return new ResponseEntity<>(errorResponseDto, HttpStatus.NOT_FOUND);
     }
 
