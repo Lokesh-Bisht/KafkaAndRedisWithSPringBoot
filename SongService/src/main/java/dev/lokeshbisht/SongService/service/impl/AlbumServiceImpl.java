@@ -1,5 +1,7 @@
 package dev.lokeshbisht.SongService.service.impl;
 
+import dev.lokeshbisht.SongService.dto.ApiResponseDto;
+import dev.lokeshbisht.SongService.dto.MetaDataDto;
 import dev.lokeshbisht.SongService.dto.album.AlbumDto;
 import dev.lokeshbisht.SongService.dto.album.AlbumRequestDto;
 import dev.lokeshbisht.SongService.entity.Album;
@@ -47,5 +49,26 @@ public class AlbumServiceImpl implements AlbumService {
         updatedAlbum.setCreatedBy(album.get().getCreatedBy());
         updatedAlbum.setUpdatedAt(new Date());
         return albumMapper.toAlbumDto(albumRepository.save(updatedAlbum));
+    }
+
+    private MetaDataDto generateApiResponseMetadata(int page, int size, int total, double startTime) {
+        return MetaDataDto.builder()
+            .page(page)
+            .size(size)
+            .total(total)
+            .took(System.currentTimeMillis() - startTime)
+            .build();
+    }
+
+    @Override
+    public ApiResponseDto<AlbumDto> getAlbum(Long albumId) {
+        logger.info("Fetch album {}", albumId);
+        double startTime = System.currentTimeMillis();
+        Optional<Album> album = albumRepository.findById(albumId);
+        if (album.isEmpty()) {
+            throw new AlbumNotFoundException("Album "+ albumId + " doesn't exist.");
+        }
+        AlbumDto albumDto = albumMapper.toAlbumDto(album.get());
+        return new ApiResponseDto<>(albumDto, "OK", null, generateApiResponseMetadata(1, 1, 1, startTime));
     }
 }
