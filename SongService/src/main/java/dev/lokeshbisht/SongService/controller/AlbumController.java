@@ -1,5 +1,6 @@
 package dev.lokeshbisht.SongService.controller;
 
+import dev.lokeshbisht.SongService.dto.ApiResponseDto;
 import dev.lokeshbisht.SongService.dto.album.AlbumDto;
 import dev.lokeshbisht.SongService.dto.album.AlbumRequestDto;
 import dev.lokeshbisht.SongService.service.AlbumService;
@@ -22,5 +23,10 @@ public class AlbumController {
     @PostMapping("/album/{albumId}")
     public AlbumDto updateAlbum(@RequestBody AlbumRequestDto albumRequestDto, @PathVariable Long albumId) {
         return albumService.updateAlbum(albumRequestDto, albumId);
+    }
+
+    @GetMapping("/album/{albumId}")
+    public ApiResponseDto<AlbumDto> getAlbum(@PathVariable Long albumId) {
+        return albumService.getAlbum(albumId);
     }
 }
