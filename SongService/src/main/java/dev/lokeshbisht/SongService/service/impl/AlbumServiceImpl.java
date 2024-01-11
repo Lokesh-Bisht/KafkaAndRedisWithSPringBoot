@@ -3,6 +3,7 @@ package dev.lokeshbisht.SongService.service.impl;
 import dev.lokeshbisht.SongService.dto.ApiResponseDto;
 import dev.lokeshbisht.SongService.dto.MetaDataDto;
 import dev.lokeshbisht.SongService.dto.album.AlbumDto;
+import dev.lokeshbisht.SongService.dto.album.AlbumListRequestDto;
 import dev.lokeshbisht.SongService.dto.album.AlbumRequestDto;
 import dev.lokeshbisht.SongService.entity.Album;
 import dev.lokeshbisht.SongService.exceptions.AlbumNotFoundException;
@@ -14,7 +15,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -70,5 +73,17 @@ public class AlbumServiceImpl implements AlbumService {
         }
         AlbumDto albumDto = albumMapper.toAlbumDto(album.get());
         return new ApiResponseDto<>(albumDto, "OK", null, generateApiResponseMetadata(1, 1, 1, startTime));
+    }
+
+    @Override
+    public ApiResponseDto<List<AlbumDto>> getAllAlbumsInList(AlbumListRequestDto albumListRequestDto) {
+        logger.info("Fetch all albums for id's in the list: {}", albumListRequestDto.getAlbumIdList());
+        double startTime = System.currentTimeMillis();
+        List<Album> albumList = albumRepository.findByIdIn(albumListRequestDto.getAlbumIdList());
+        List<AlbumDto> albumDtoList = new ArrayList<>();
+        for (Album album : albumList) {
+            albumDtoList.add(albumMapper.toAlbumDto(album));
+        }
+        return new ApiResponseDto<>(albumDtoList, "OK", null, generateApiResponseMetadata(1, 1, albumDtoList.size(), startTime));
     }
 }
