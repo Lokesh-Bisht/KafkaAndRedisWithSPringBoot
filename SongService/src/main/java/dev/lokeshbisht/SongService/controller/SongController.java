@@ -1,5 +1,6 @@
 package dev.lokeshbisht.SongService.controller;
 
+import dev.lokeshbisht.SongService.dto.ApiResponseDto;
 import dev.lokeshbisht.SongService.dto.song.request.SongPlayCountRequestDto;
 import dev.lokeshbisht.SongService.dto.song.response.SongDto;
 import dev.lokeshbisht.SongService.dto.song.request.SongRequestDto;
@@ -34,5 +35,10 @@ public class SongController {
     @DeleteMapping("/song/{songId}")
     public void deleteSong(@PathVariable Long songId) {
         songService.deleteSong(songId);
+    }
+
+    @GetMapping("/song/{songId}")
+    public ApiResponseDto<SongDto> getSong(@PathVariable Long songId) {
+        return songService.getSong(songId);
     }
 }

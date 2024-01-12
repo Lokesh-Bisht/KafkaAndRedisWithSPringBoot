@@ -1,5 +1,7 @@
 package dev.lokeshbisht.SongService.service.impl;
 
+import dev.lokeshbisht.SongService.dto.ApiResponseDto;
+import dev.lokeshbisht.SongService.dto.MetaDataDto;
 import dev.lokeshbisht.SongService.dto.song.request.SongPlayCountRequestDto;
 import dev.lokeshbisht.SongService.dto.song.request.SongRequestDto;
 import dev.lokeshbisht.SongService.dto.song.response.SongDto;
@@ -73,4 +75,24 @@ public class SongServiceImpl implements SongService {
         songRepository.delete(song.get());
     }
 
+    private MetaDataDto generateApiResponseMetadata(int page, int size, int total, double startTime) {
+        return MetaDataDto.builder()
+            .page(page)
+            .size(size)
+            .total(total)
+            .took(System.currentTimeMillis() - startTime)
+            .build();
+    }
+
+    @Override
+    public ApiResponseDto<SongDto> getSong(Long songId) {
+        logger.info("Fetch song: {}", songId);
+        double startTime = System.currentTimeMillis();
+        Optional<Song> song = songRepository.findById(songId);
+        if (song.isEmpty()) {
+            throw new SongNotFoundException("The song with songId " + songId + " doesn't exist.");
+        }
+        SongDto songDto = songMapper.toSongDto(song.get());
+        return new ApiResponseDto<>(songDto, "OK", null, generateApiResponseMetadata(1, 1, 1, startTime));
+    }
 }
