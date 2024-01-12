@@ -35,4 +35,9 @@ public class SongController {
     public void deleteSong(@PathVariable Long songId) {
         songService.deleteSong(songId);
     }
+
+    @GetMapping("/song/{songId}")
+    public SongDto getSong(@PathVariable Long songId) {
+        return songService.getSong(songId);
+    }
 }
