@@ -30,4 +30,9 @@ public class SongController {
     public SongDto updatePlayCount(@RequestBody SongPlayCountRequestDto songPlayCountRequestDto, @PathVariable Long songId) {
         return songService.updatePlayCount(songPlayCountRequestDto, songId);
     }
+
+    @DeleteMapping("/song/{songId}")
+    public void deleteSong(@PathVariable Long songId) {
+        songService.deleteSong(songId);
+    }
 }
