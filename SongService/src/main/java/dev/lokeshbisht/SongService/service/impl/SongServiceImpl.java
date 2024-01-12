@@ -73,4 +73,14 @@ public class SongServiceImpl implements SongService {
         songRepository.delete(song.get());
     }
 
+    @Override
+    public SongDto getSong(Long songId) {
+        logger.info("Fetch song: {}", songId);
+        Optional<Song> song = songRepository.findById(songId);
+        if (song.isEmpty()) {
+            throw new SongNotFoundException("The song with songId " + songId + " doesn't exist.");
+        }
+        return songMapper.toSongDto(song.get());
+    }
+
 }

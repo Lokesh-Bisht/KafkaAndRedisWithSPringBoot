@@ -10,4 +10,5 @@ public interface SongService {
     SongDto updateSong(SongRequestDto songRequestDto, Long genreId, Long songId);
     SongDto updatePlayCount(SongPlayCountRequestDto songPlayCountRequestDto, Long songId);
     void deleteSong(Long songId);
+    SongDto getSong(Long songId);
 }
