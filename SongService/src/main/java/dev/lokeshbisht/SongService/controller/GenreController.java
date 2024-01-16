@@ -3,8 +3,8 @@ package dev.lokeshbisht.SongService.controller;
 import dev.lokeshbisht.SongService.dto.ApiResponseDto;
 import dev.lokeshbisht.SongService.dto.genre.GenreDto;
 import dev.lokeshbisht.SongService.dto.genre.GenreRequestDto;
-import dev.lokeshbisht.SongService.entity.Genre;
 import dev.lokeshbisht.SongService.service.GenreService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,12 +19,12 @@ public class GenreController {
     private GenreService genreService;
 
     @PostMapping("/genre")
-    public GenreDto addGenre(@RequestBody GenreRequestDto genreRequestDto) {
+    public GenreDto addGenre(@Valid @RequestBody GenreRequestDto genreRequestDto) {
         return genreService.addGenre(genreRequestDto);
     }
 
     @PutMapping("/genre/{genreId}")
-    public GenreDto updateGenre(@RequestBody GenreRequestDto genreRequestDto, Long genreId) {
+    public GenreDto updateGenre(@Valid @RequestBody GenreRequestDto genreRequestDto, Long genreId) {
         return genreService.updateGenre(genreRequestDto, genreId);
     }
 
