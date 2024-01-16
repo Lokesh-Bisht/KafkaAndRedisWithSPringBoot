@@ -5,6 +5,7 @@ import dev.lokeshbisht.SongService.dto.album.AlbumDto;
 import dev.lokeshbisht.SongService.dto.album.AlbumListRequestDto;
 import dev.lokeshbisht.SongService.dto.album.AlbumRequestDto;
 import dev.lokeshbisht.SongService.service.AlbumService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,12 +20,12 @@ public class AlbumController {
     private AlbumService albumService;
 
     @PostMapping("/album")
-    public AlbumDto createAlbum(@RequestBody AlbumRequestDto albumRequestDto) {
+    public AlbumDto createAlbum(@Valid @RequestBody AlbumRequestDto albumRequestDto) {
         return albumService.addAlbum(albumRequestDto);
     }
 
-    @PostMapping("/album/{albumId}")
-    public AlbumDto updateAlbum(@RequestBody AlbumRequestDto albumRequestDto, @PathVariable Long albumId) {
+    @PutMapping("/album/{albumId}")
+    public AlbumDto updateAlbum(@Valid @RequestBody AlbumRequestDto albumRequestDto, @PathVariable Long albumId) {
         return albumService.updateAlbum(albumRequestDto, albumId);
     }
 
