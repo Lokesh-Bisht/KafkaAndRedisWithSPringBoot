@@ -2,6 +2,8 @@ package dev.lokeshbisht.SongService.dto.song.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,9 +17,11 @@ import static dev.lokeshbisht.SongService.constants.JsonConstants.ISO8601;
 @AllArgsConstructor
 public class SongRequestDto {
 
+    @NotNull(message = "Artist id is required.")
     @JsonProperty("artist_id")
     private Long artistId;
 
+    @NotNull(message = "Album id is required.")
     @JsonProperty("album_id")
     private Long albumId;
 
@@ -28,6 +32,8 @@ public class SongRequestDto {
 
     private String format;
 
+    @NotNull(message = "Song duration is required.")
+    @Positive(message = "Song duration must be greater than 0s.")
     private Integer duration;
 
     private Long streams;
